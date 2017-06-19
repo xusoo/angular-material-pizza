@@ -1,0 +1,26 @@
+<form name="$ctrl.form" novalidate ng-submit="$ctrl.login()">
+	<div layout-align="center center" layout="row" layout-padding>
+		<md-card flex-gt-md="33" flex-gt-xs="66" flex-xs="100">
+			<md-card-content>
+				<md-input-container class="md-block">
+					<label>Email</label>
+					<input type="email" required ng-model="$ctrl.email" name="email">
+					<span class="error-message"
+					      ng-if="($ctrl.form.email.$touched || $ctrl.form.$submitted) && $ctrl.form.email.$error.email">
+						Introduce un email válido
+					</span>
+				</md-input-container>
+
+				<md-input-container class="md-block">
+					<label>Password</label>
+					<input required ng-model="$ctrl.password" name="password" type="password">
+				</md-input-container>
+			</md-card-content>
+			<md-button ui-sref="register">¿No tienes cuenta? ¡Regístrate!</md-button>
+			<md-button class="md-raised md-default" type="submit">Login</md-button>
+			<md-button class="md-raised md-primary" type="button" ng-click="$ctrl.authenticate('google')">Login con
+				Google
+			</md-button>
+		</md-card>
+	</div>
+</form>

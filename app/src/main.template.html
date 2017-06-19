@@ -1,0 +1,48 @@
+<div layout="column" style="height: 100%;">
+	<md-toolbar layout="row" class="md-toolbar-tools">
+		<md-button class="menu md-icon-button" hide-gt-sm ng-click="$ctrl.toggleMenu()"
+		           ng-show="$ctrl.authenticatedUser">
+			<md-icon md-font-set="material-icons">menu</md-icon>
+		</md-button>
+		<h1 flex>Pizzería</h1>
+		<md-menu>
+			<md-button md-menu-origin ng-show="$ctrl.authenticatedUser" layout="row" layout-align="center center"
+			           ng-click="$ctrl.openUserMenu($mdMenu, $event)">
+				<span class="user-header__name">{{ $ctrl.authenticatedUser.name }} {{ $ctrl.authenticatedUser.surname }}</span>
+				<img class="user-header__avatar md-whiteframe-1dp" gravatar-src="$ctrl.authenticatedUser.email"
+				     gravatar-size="40" flex="none">
+			</md-button>
+			<md-menu-content width="4">
+				<md-menu-item>
+					<md-button ng-click="$ctrl.logout()">Salir</md-button>
+				</md-menu-item>
+			</md-menu-content>
+		</md-menu>
+	</md-toolbar>
+
+	<div flex layout="row">
+
+		<md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$ctrl.authenticatedUser && $mdMedia('gt-sm')"
+		            md-component-id="left">
+			<md-list>
+				<md-list-item>
+					<md-button class="sidenav__item" ui-sref="pizza-list" ui-sref-active="md-accent md-raised"
+					           ng-click="$ctrl.closeMenu()">
+						Ver pizzas
+					</md-button>
+				</md-list-item>
+				<md-list-item>
+					<md-button class="sidenav__item" ui-sref="add-pizza" ui-sref-active="md-accent md-raised"
+					           ng-click="$ctrl.closeMenu()">
+						Añadir pizza
+					</md-button>
+				</md-list-item>
+			</md-list>
+		</md-sidenav>
+
+		<md-content flex>
+			<div ui-view></div>
+		</md-content>
+
+	</div>
+</div>

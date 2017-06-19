@@ -1,0 +1,35 @@
+.user-comment-form__rating {
+	margin-bottom: 0;
+}
+
+.user-comment {
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.user-comment:last-child {
+	margin-bottom: 0;
+}
+
+.user-comment__avatar {
+	margin-right: 10px;
+	border-radius: 20px;
+}
+
+.user-comment__user-name {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.user-comment__date {
+	font-style: italic;
+}
+
+.user-comment__rating {
+	font-weight: bold;
+	font-size: 32px;
+}
+
+.user-comment__max-rating {
+	font-size: 16px;
+}

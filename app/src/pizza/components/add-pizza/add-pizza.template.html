@@ -1,0 +1,46 @@
+<form name="$ctrl.form" ng-cloak ng-submit="$ctrl.savePizza()" novalidate>
+	<div layout layout-align="center">
+		<md-card flex="100" flex-gt-md="80" flex-gt-lg="60">
+			<md-card-title>
+				<md-card-title-text>
+					<h2 class="md-display-1">Añadir pizza</h2>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<md-input-container class="md-block">
+					<label>Nombre</label>
+					<input required ng-model="$ctrl.pizzaName" name="pizzaName">
+					<span class="error-message"
+					      ng-if="($ctrl.form.pizzaName.$touched || $ctrl.form.$submitted) && $ctrl.form.pizzaName.$error.required">
+						¡Tienes que bautizar a tu pizza!
+					</span>
+				</md-input-container>
+
+				<md-input-container class="md-block">
+					<label>Ingredientes</label>
+					<md-select ng-model="$ctrl.selectedIngredients" multiple>
+						<md-optgroup>
+							<md-option value="{{ ingredient.id }}" ng-repeat="ingredient in $ctrl.availableIngredients">
+								{{ ingredient.name }} ({{ ingredient.price }}€)
+							</md-option>
+						</md-optgroup>
+					</md-select>
+					<p></p>
+				</md-input-container>
+
+				<md-input-container class="md-block">
+					<label>Imagen</label>
+					<input required type="url" ng-model="$ctrl.imagePath" name="imagePath">
+					<span class="error-message"
+					      ng-if="($ctrl.form.imagePath.$touched || $ctrl.form.$submitted) && $ctrl.form.imagePath.$error.required">
+						Añade una imagen para ver qué pinta tiene 😋
+					</span>
+				</md-input-container>
+			</md-card-content>
+			<img class="md-card-image" ng-src="{{ $ctrl.imagePath }}">
+			<md-card-content layout-align="end" layout="row">
+				<md-button class="md-raised md-primary" type="submit">Guardar</md-button>
+			</md-card-content>
+		</md-card>
+	</div>
+</form>

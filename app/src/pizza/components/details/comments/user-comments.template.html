@@ -1,0 +1,62 @@
+<div ng-cloak layout="column" layout-align="center">
+	<md-card flex="100" flex-gt-md="80" flex-gt-lg="60" ng-show="$ctrl.comments.length">
+		<md-card-content>
+			<h4 class="md-title">Comentarios</h4>
+			<md-content ng-repeat="comment in $ctrl.comments track by comment.id"
+			            class="md-whiteframe-1dp user-comment">
+				<div layout="row" layout-align="center center">
+					<img class="user-comment__avatar md-whiteframe-1dp" gravatar-src-once="comment.user.email"
+					     gravatar-size="40" flex="none">
+					<div flex layout="column">
+						<div class="user-comment__user-name">{{ comment.user.name }} {{ comment.user.surname }}</div>
+						<div class="user-comment__date">{{ comment.date | date : 'dd/MM/yyyy H:mm'}}</div>
+					</div>
+					<div class="user-comment__rating" flex="none">{{ comment.rating }}<span
+							class="user-comment__max-rating">/10</span></div>
+				</div>
+				<p>
+					{{ comment.text }}
+				</p>
+			</md-content>
+		</md-card-content>
+	</md-card>
+
+	<md-card flex="100" flex-gt-md="80" flex-gt-lg="60">
+		<md-card-content>
+			<form name="$ctrl.form" ng-cloak ng-submit="$ctrl.saveComment()" novalidate>
+				<h4 class="md-title">
+					{{ $ctrl.comments.length ? 'Déjanos el tuyo' : '¡Sé el primero en dejar un comentario!' }}
+				</h4>
+
+				<md-input-container class="user-comment-form__rating">
+					<label>Puntuación</label>
+					<md-select ng-model="$ctrl.userRating" required name="rating">
+						<md-option value="{{ $index }}" ng-repeat="n in [].constructor(11) track by $index">
+							{{ $index }}
+						</md-option>
+					</md-select>
+					<span class="error-message"
+					      ng-if="($ctrl.form.rating.$touched || $ctrl.form.$submitted) && $ctrl.form.rating.$error.required">
+						Añade una puntuación a la pizza 👍
+					</span>
+				</md-input-container>
+				<md-input-container class="md-block">
+					<textarea ng-model="$ctrl.userComment" placeholder="Cuéntanos qué te ha parecido la pizza..."
+					          rows="5" required maxlength="500" name="comment"></textarea>
+					<span class="error-message"
+					      ng-if="($ctrl.form.comment.$touched || $ctrl.form.$submitted) && $ctrl.form.comment.$error.required">
+						¡No te olvides del comentario!
+					</span>
+					<span class="error-message"
+					      ng-if="($ctrl.form.comment.$touched || $ctrl.form.$submitted) && $ctrl.form.comment.$error.maxlength">
+						Tampoco te pases... Máximo 500 letras.
+					</span>
+				</md-input-container>
+
+				<div layout-align="end" layout="row">
+					<md-button class="md-raised md-primary" type="submit">Enviar</md-button>
+				</div>
+			</form>
+		</md-card-content>
+	</md-card>
+</div>

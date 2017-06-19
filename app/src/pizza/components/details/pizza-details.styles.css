@@ -1,0 +1,18 @@
+.pizza-details__image {
+	max-height: 300px;
+	object-fit: cover;
+}
+
+.pizza-details__title {
+	margin-bottom: 0;
+}
+
+.pizza-details__section-title {
+	margin-bottom: 0;
+}
+
+.pizza-details__ingredient {
+	padding-top: 2px;
+	color: gray;
+	list-style: none;
+}
